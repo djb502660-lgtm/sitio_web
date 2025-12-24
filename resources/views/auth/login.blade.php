@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary: #dc2626;
+            --secondary: #f87171;
+            --surface: #ffffff;
+            --muted: #7f1d1d;
+            --border: #fecaca;
+            --background: #fff5f5;
         }
 
         * {
@@ -20,7 +23,7 @@
         }
 
         body {
-            background: var(--gradient);
+            background: var(--background);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -30,19 +33,21 @@
         }
 
         .auth-card {
-            background: white;
+            background: var(--surface);
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
             overflow: hidden;
             width: 100%;
             max-width: 450px;
         }
 
         .auth-header {
-            background: var(--gradient);
-            color: white;
+            background: #fff1f2;
+            color: #7f1d1d;
             padding: 40px 30px;
             text-align: center;
+            border-bottom: 1px solid var(--border);
         }
 
         .auth-header h1 {
@@ -52,8 +57,9 @@
         }
 
         .auth-header p {
-            opacity: 0.9;
+            opacity: 1;
             font-size: 14px;
+            color: var(--muted);
         }
 
         .auth-body {
@@ -62,24 +68,24 @@
 
         .form-label {
             font-weight: 600;
-            color: #1e293b;
+            color: #7f1d1d;
             margin-bottom: 8px;
         }
 
         .form-control, .form-select {
-            border: 2px solid #e2e8f0;
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 12px 15px;
             transition: all 0.3s;
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(248, 113, 113, 0.2);
         }
 
         .btn-primary {
-            background: var(--gradient);
+            background: var(--primary);
             border: none;
             border-radius: 10px;
             padding: 12px;
@@ -89,8 +95,9 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(248, 113, 113, 0.25);
+            background: var(--secondary);
         }
 
         .form-check-input:checked {
@@ -102,7 +109,7 @@
             padding: 20px 30px;
             text-align: center;
             background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border);
         }
 
         .auth-footer a {

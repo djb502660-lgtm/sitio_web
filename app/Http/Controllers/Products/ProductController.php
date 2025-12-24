@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -13,6 +14,42 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->paginate(10);
         return view('productos.index', compact('products'));
+    }
+
+    public function export()
+    {
+        $products = Product::with('category')
+            ->orderBy('nombre')
+            ->get();
+
+        return response()->streamDownload(function () use ($products) {
+            echo "\xEF\xBB\xBF";
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['Nombre', 'Categoria', 'Precio', 'Stock', 'Estado']);
+
+            foreach ($products as $product) {
+                fputcsv($handle, [
+                    $product->nombre,
+                    $product->category->nombre ?? 'N/A',
+                    $product->precio,
+                    $product->stock,
+                    $product->estado,
+                ]);
+            }
+
+            fclose($handle);
+        }, 'productos.csv', [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    public function print()
+    {
+        $products = Product::with('category')
+            ->orderBy('nombre')
+            ->get();
+
+        return view('productos.print', compact('products'));
     }
 
     public function create()
@@ -29,6 +66,7 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'estado' => 'required|in:activo,inactivo',
             'category_id' => 'required|exists:categories,id',
+            'imagen' => 'nullable|image|max:2048',
         ], [
             'nombre.required' => 'El nombre del producto es obligatorio',
             'precio.required' => 'El precio es obligatorio',
@@ -37,6 +75,10 @@ class ProductController extends Controller
             'estado.required' => 'El estado es obligatorio',
             'category_id.required' => 'Debe seleccionar una categoría',
         ]);
+
+        if ($request->hasFile('imagen')) {
+            $validated['image_path'] = $request->file('imagen')->store('products', 'public');
+        }
 
         Product::create($validated);
         return redirect()->route('products.index')->with('success', 'Producto creado exitosamente');
@@ -62,7 +104,15 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0',
             'estado' => 'required|in:activo,inactivo',
             'category_id' => 'required|exists:categories,id',
+            'imagen' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('imagen')) {
+            if ($product->image_path) {
+                Storage::disk('public')->delete($product->image_path);
+            }
+            $validated['image_path'] = $request->file('imagen')->store('products', 'public');
+        }
 
         $product->update($validated);
         return redirect()->route('products.show', $product)->with('success', 'Producto actualizado exitosamente');
@@ -70,6 +120,9 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if ($product->image_path) {
+            Storage::disk('public')->delete($product->image_path);
+        }
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente');
     }

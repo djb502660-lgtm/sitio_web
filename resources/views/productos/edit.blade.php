@@ -27,7 +27,7 @@
 
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form action="{{ route('products.update', $product) }}" method="POST">
+                    <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -88,6 +88,20 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            @if($product->image_path)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="Imagen del producto" style="max-width: 180px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('imagen') is-invalid @enderror"
+                                id="imagen" name="imagen" accept="image/*">
+                            @error('imagen')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-4 d-flex gap-2">

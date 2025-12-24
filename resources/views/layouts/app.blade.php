@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #0ea5e9;
-            --light: #f8fafc;
-            --dark: #1e293b;
+            --primary: #dc2626;
+            --secondary: #f87171;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --info: #0891b2;
+            --light: #fff5f5;
+            --dark: #0f172a;
+            --border: #fecaca;
         }
 
         * {
@@ -25,7 +26,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fff5f5;
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -38,7 +39,7 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background: var(--dark);
+            background: #ffffff;
             color: white;
             padding: 20px;
             overflow-y: auto;
@@ -46,7 +47,8 @@
             height: 100vh;
             left: 0;
             top: 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            border-right: 1px solid var(--border);
+            box-shadow: none;
         }
 
         .sidebar .brand {
@@ -72,7 +74,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 15px;
-            color: rgba(255, 255, 255, 0.8);
+            color: #7f1d1d;
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.3s ease;
@@ -80,9 +82,9 @@
 
         .sidebar .nav-menu a:hover,
         .sidebar .nav-menu a.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding-left: 20px;
+            background: #fee2e2;
+            color: #7f1d1d;
+            padding-left: 18px;
         }
 
         .sidebar .nav-menu a i {
@@ -101,10 +103,11 @@
         .header {
             background: white;
             padding: 20px 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
         }
 
         .header .search-box {
@@ -116,10 +119,11 @@
         .header .search-box input {
             width: 100%;
             padding: 10px 15px 10px 40px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 14px;
             transition: border-color 0.3s;
+            background: #ffffff;
         }
 
         .header .search-box input:focus {
@@ -170,22 +174,24 @@
         .card {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
+            border: 1px solid var(--border);
             transition: transform 0.3s, box-shadow 0.3s;
             margin-bottom: 20px;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
         }
 
         .card-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: #fff1f2;
+            color: #7f1d1d;
             border: none;
             border-radius: 12px 12px 0 0;
             padding: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
         /* Stats Cards */
@@ -194,13 +200,14 @@
             border-radius: 12px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
+            border: 1px solid var(--border);
             transition: all 0.3s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
         }
 
         .stat-card .icon {
@@ -227,7 +234,7 @@
 
         .table thead th {
             background: #f8fafc;
-            border-bottom: 2px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
             color: var(--dark);
             font-weight: 600;
             padding: 15px;
@@ -236,24 +243,24 @@
         .table tbody td {
             padding: 15px;
             vertical-align: middle;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
         }
 
         .table tbody tr:hover {
-            background: #f8fafc;
+            background: #f1f5f9;
         }
 
         /* Buttons */
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             border: none;
             transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            background: var(--secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
         }
 
         /* Badges */
@@ -272,15 +279,15 @@
         }
 
         .alert-success {
-            background: rgba(16, 185, 129, 0.1);
+            background: #ecfdf5;
             color: #065f46;
-            border-left: 4px solid var(--success);
+            border-left: 3px solid var(--success);
         }
 
         .alert-danger {
-            background: rgba(239, 68, 68, 0.1);
+            background: #fef2f2;
             color: #7f1d1d;
-            border-left: 4px solid var(--danger);
+            border-left: 3px solid var(--danger);
         }
 
         /* Responsive */
@@ -370,18 +377,79 @@
         <div class="main-content">
             <!-- Header -->
             <header class="header">
-                <div class="search-box">
+                <form class="search-box" method="GET" action="{{ route('search') }}">
                     <i class="bi bi-search"></i>
-                    <input type="text" placeholder="Buscar...">
-                </div>
+                    <input type="text" name="q" value="{{ request('q') }}" placeholder="Buscar...">
+                </form>
 
                 <div class="header-actions">
-                    <button class="btn btn-light position-relative">
-                        <i class="bi bi-bell"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            3
-                        </span>
-                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-light position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell"></i>
+                            @if(!empty($notificationCount))
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ $notificationCount }}
+                                </span>
+                            @endif
+                        </button>
+                        @php
+                            $lowStockCount = is_countable($lowStockProducts ?? null) ? count($lowStockProducts) : 0;
+                            $newProductsCount = is_countable($newProducts ?? null) ? count($newProducts) : 0;
+                            $newCategoriesCount = is_countable($newCategories ?? null) ? count($newCategories) : 0;
+                            $newUsersCount = is_countable($newUsers ?? null) ? count($newUsers) : 0;
+                        @endphp
+                        <ul class="dropdown-menu dropdown-menu-end p-2" style="min-width: 320px;">
+                            <li class="dropdown-header">Notificaciones</li>
+                            @if(!empty($notificationCount))
+                                @if($lowStockCount > 0)
+                                    <li class="dropdown-item-text text-muted">Stock bajo</li>
+                                    @foreach($lowStockProducts as $product)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('products.show', $product) }}">
+                                                {{ $product->nombre }} (stock: {{ $product->stock }})
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+                                @if($newProductsCount > 0)
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="dropdown-item-text text-muted">Productos nuevos</li>
+                                    @foreach($newProducts as $product)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('products.show', $product) }}">
+                                                {{ $product->nombre }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+                                @if($newCategoriesCount > 0)
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="dropdown-item-text text-muted">Categorias nuevas</li>
+                                    @foreach($newCategories as $category)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('admin.categories.show', $category) }}">
+                                                {{ $category->nombre }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+                                @if($newUsersCount > 0)
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="dropdown-item-text text-muted">Usuarios nuevos</li>
+                                    @foreach($newUsers as $user)
+                                        <li class="dropdown-item text-wrap">
+                                            {{ $user->name }} - {{ $user->created_at ? $user->created_at->format('d/m/Y H:i') : 'N/A' }}
+                                        </li>
+                                    @endforeach
+                                @endif
+                            @else
+                                <li class="dropdown-item text-muted">Sin notificaciones</li>
+                            @endif
+                        </ul>
+                    </div>
 
                     <div class="user-profile">
                         <div>
@@ -416,3 +484,5 @@
     @yield('scripts')
 </body>
 </html>
+
+

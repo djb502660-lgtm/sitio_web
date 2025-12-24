@@ -27,7 +27,7 @@
 
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                    <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -45,6 +45,20 @@
                             <textarea class="form-control @error('descripcion') is-invalid @enderror" 
                                 id="descripcion" name="descripcion" rows="4">{{ old('descripcion', $category->descripcion) }}</textarea>
                             @error('descripcion')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            @if($category->image_path)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $category->image_path) }}" alt="Imagen de la categoría" style="max-width: 180px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('imagen') is-invalid @enderror"
+                                id="imagen" name="imagen" accept="image/*">
+                            @error('imagen')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>

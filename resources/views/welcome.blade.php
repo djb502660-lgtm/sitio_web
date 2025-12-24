@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary: #dc2626;
+            --secondary: #f87171;
+            --surface: #ffffff;
+            --muted: #7f1d1d;
+            --border: #fecaca;
+            --background: #fff5f5;
         }
 
         * {
@@ -20,7 +23,7 @@
         }
 
         body {
-            background: var(--gradient);
+            background: var(--background);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -34,9 +37,10 @@
         }
 
         .welcome-card {
-            background: white;
+            background: var(--surface);
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
             overflow: hidden;
         }
 
@@ -60,13 +64,13 @@
         .welcome-title {
             font-size: 48px;
             font-weight: 700;
-            color: #1e293b;
+            color: #7f1d1d;
             margin-bottom: 15px;
         }
 
         .welcome-subtitle {
             font-size: 18px;
-            color: #64748b;
+            color: var(--muted);
             margin-bottom: 40px;
             line-height: 1.6;
         }
@@ -84,11 +88,12 @@
             border-radius: 12px;
             text-align: center;
             transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
 
         .feature-card:hover {
-            background: #e0e7ff;
-            transform: translateY(-10px);
+            background: #f1f5f9;
+            transform: translateY(-4px);
         }
 
         .feature-icon {
@@ -99,7 +104,7 @@
 
         .feature-title {
             font-weight: 600;
-            color: #1e293b;
+            color: #7f1d1d;
             font-size: 14px;
         }
 
@@ -123,34 +128,36 @@
         }
 
         .btn-primary-welcome {
-            background: var(--gradient);
+            background: var(--primary);
             color: white;
         }
 
         .btn-primary-welcome:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
             color: white;
+            background: var(--secondary);
         }
 
         .btn-secondary-welcome {
-            background: white;
+            background: var(--surface);
             color: var(--primary);
-            border: 2px solid var(--primary);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary-welcome:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
+            background: #f1f5f9;
+            color: var(--secondary);
+            transform: translateY(-2px);
         }
 
         .welcome-footer {
             background: #f8fafc;
             padding: 30px 40px;
             text-align: center;
-            color: #64748b;
+            color: var(--muted);
             font-size: 14px;
+            border-top: 1px solid var(--border);
         }
 
         @media (max-width: 768px) {

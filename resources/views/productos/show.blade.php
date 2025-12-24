@@ -56,6 +56,11 @@
                                 <dd class="col-sm-8">{{ $product->created_at ? $product->created_at->format('d/m/Y H:i') : 'N/A' }}</dd>
                             </dl>
                         </div>
+                        <div class="col-md-4">
+                            @if($product->image_path)
+                                <img src="{{ asset('storage/' . $product->image_path) }}" alt="Imagen del producto" class="img-fluid rounded border">
+                            @endif
+                        </div>
                     </div>
 
                     <div class="mt-4 d-flex gap-2">

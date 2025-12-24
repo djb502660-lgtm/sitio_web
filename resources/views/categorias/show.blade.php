@@ -22,6 +22,12 @@
                             <h1 class="mb-3">
                                 <i class="bi bi-tags"></i> {{ $category->nombre }}
                             </h1>
+
+                            @if($category->image_path)
+                                <div class="mb-3">
+                                    <img src="{{ asset('storage/' . $category->image_path) }}" alt="Imagen de la categoría" class="img-fluid rounded border" style="max-width: 240px;">
+                                </div>
+                            @endif
                             
                             <dl class="row">
                                 <dt class="col-sm-4">Nombre:</dt>
